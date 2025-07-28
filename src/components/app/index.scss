@@ -1,0 +1,37 @@
+@import "./variables";
+* {
+    box-sizing: border-box;
+    font-family: $font;
+}
+
+html {
+    width: 1440px;
+    margin: 0 auto;
+    font-size: 10px;
+}
+
+.app {
+    font-size: $fontSize;
+    width: 144rem;
+    height: 94.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem auto;
+    border: 0.1rem solid rgb(48, 48, 48, 0.8);
+    border-radius: $radius;
+    background-image: url(../../../public/images/png/background/clear.png);
+    background-size: cover;
+    .wrapper {
+        width: 135rem;
+        height: 76.5rem;
+        border: 0.1rem solid rgb(48, 48, 48, 0.8);
+        border-radius: $radius;
+        .header {
+            height: 4rem;
+            margin-top: -4.5rem;
+            margin-left: 30rem;
+
+        }
+    }
+}

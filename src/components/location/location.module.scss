@@ -1,0 +1,23 @@
+.blockLocation__location {
+    width: 20rem;
+    height: 4rem;
+    font-size: 1.2rem;
+    background-color: rgba(15, 113, 165, 0.9);
+    border-radius: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    .blockLocation__location_img {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+    .blockLocation__location_placeholder {
+        color: #ffffff;
+    }
+}
+
+.blockLocation__location:hover {
+    background-color: rgb(12, 90, 133);
+}

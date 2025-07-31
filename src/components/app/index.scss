@@ -1,7 +1,7 @@
-@import "./variables";
+@use "./variables";
 * {
     box-sizing: border-box;
-    font-family: $font;
+    font-family: variables.$font;
 }
 
 html {
@@ -11,27 +11,41 @@ html {
 }
 
 .app {
-    font-size: $fontSize;
+    font-size: variables.$fontSize;
     width: 144rem;
     height: 94.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10rem auto;
-    border: 0.1rem solid rgb(48, 48, 48, 0.8);
-    border-radius: $radius;
+    border-radius: variables.$radius;
     background-image: url(../../../public/images/png/background/clear.png);
     background-size: cover;
     .wrapper {
         width: 135rem;
         height: 76.5rem;
-        border: 0.1rem solid rgb(48, 48, 48, 0.8);
-        border-radius: $radius;
+        border-radius: variables.$radius;
+        backdrop-filter: blur(5px); // размытие зднего фона
+        // filter: blur(5px); // размытие рамки
         .header {
             height: 4rem;
             margin-top: -4.5rem;
             margin-left: 30rem;
-
+            display: flex;
+            gap: 5rem;
+        }
+        .wrap {
+            margin-top: 3rem;
+            display: flex;
+            gap: 4rem;
+            .aside {
+                margin-top: 20rem;
+                width: 25rem;
+                height: 30rem;
+                background-color: rgba(15, 113, 165, 0.5);
+                border-radius: 4rem;
+            }
         }
     }
 }
+

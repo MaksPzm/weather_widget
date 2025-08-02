@@ -5,8 +5,25 @@ import WeatherToday from '../weatherToday/WeatherToday';
 import API from '../../api';
 import { geocodingAPI } from '../../api';
 
-// geocodingAPI();
-// API();
+geocodingAPI();
+API()
+// const newTemp = API();
+let currentTemp = localStorage.getItem('tempReadings');
+// console.log('currentTemp: ', currentTemp);
+let tempReadings: number | string = localStorage.getItem('temp') ? Number(localStorage.getItem('temp')) : "Данные не найдены";
+let tempMax: number | string = localStorage.getItem('tempMax') ? Number(localStorage.getItem('tempMax')) : "Данные не найдены";
+let tempMin: number | string = localStorage.getItem('tempMin') ? Number(localStorage.getItem('tempMin')) : "Данные не найдены";
+
+// if (newTemp == undefined) {
+//   tempReadings = Number(localStorage.getItem('temp'));
+// }
+
+
+// console.log('newTemp: ', newTemp);
+
+
+
+
 
 function App() {
   return (
@@ -21,7 +38,7 @@ function App() {
 
           </aside>
           <main className='weather'>
-            <WeatherToday />
+            <WeatherToday temp={tempReadings} tempMax={tempMax} tempMin={tempMin}/>
           </main>
         </div>
         

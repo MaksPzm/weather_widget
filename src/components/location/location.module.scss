@@ -21,3 +21,12 @@
 .blockLocation__location:hover {
     background-color: rgb(12, 90, 133);
 }
+
+.blockLocation__state_none {
+    display: none;
+}
+
+.blockLocation__state_active {
+    display: block;
+    position: absolute;
+}

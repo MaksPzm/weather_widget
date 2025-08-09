@@ -18,14 +18,14 @@ function WeatherToday(props: any) {
                     <div className={styles.weather__weatherToday__tempReadings__C_blockTemp}>
                         °C
                     </div>
-                    <span className={styles.weather__weatherToday__temp_maxMin_text}>днем</span>
+                    <span className={styles.weather__weatherToday__temp_maxMin_text}>max</span>
                 </div>
                 <div className={styles.weather__weatherToday__temp_maxMin}>
                     {props.tempMin}
                     <div className={styles.weather__weatherToday__tempReadings__C_blockTemp}>
                         °C
                     </div>
-                    <span className={styles.weather__weatherToday__temp_maxMin_text}>ночью</span>
+                    <span className={styles.weather__weatherToday__temp_maxMin_text}>min</span>
                 </div>
             </div>
             <div className={styles.weather__weatherToday_date}>

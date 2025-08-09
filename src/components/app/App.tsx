@@ -1,38 +1,87 @@
 import './index.scss';
 import LocationSearch from '../searchLocation/SearchlLocation';
-// import Location from '../location/Location';
 import WeatherToday from '../weatherToday/WeatherToday';
-import API from '../../api';
-import { geocodingAPI } from '../../api';
+import { useState, useEffect } from 'react';
 
-geocodingAPI();
-API()
+
 let tempReadings: number | string = localStorage.getItem('temp') ? Number(localStorage.getItem('temp')) : "Данные не найдены";
 let tempMax: number | string = localStorage.getItem('tempMax') ? Number(localStorage.getItem('tempMax')) : "Данные не найдены";
 let tempMin: number | string = localStorage.getItem('tempMin') ? Number(localStorage.getItem('tempMin')) : "Данные не найдены";
 let description: string = localStorage.getItem('description') ? String(localStorage.getItem('description')) : "";
-console.log('description: ', description);
-
 const imgWeather: any = {
   "переменная облачность": '../../../images/svg/weather/облачно.svg',
   "пасмурно": '../../../images/svg/weather/пасмурно.svg',
   "небольшой дождь": '../../../images/svg/weather/дождь.svg',
-  "ясно": '../../../images/svg/weather/солнечно.svg' 
+  "ясно": '../../../images/svg/weather/солнечно.svg',
+  "небольшая облачность": '../../../images/svg/weather/небольшая облачность.svg',
+  "облачно с прояснениями": '../../../images/svg/weather/небольшая облачность.svg' 
 };
+const main = {
+  temp: tempReadings,
+  temp_max: tempMax,
+  temp_min: tempMin
+};
+const weather = [{
+  description: description
+}]
+
 console.log('imgWeather: ', imgWeather[description]);
+
 function App() {
+  const [geocoding, setGeocoding] = useState<any>({});
+  const [resultAPI, setResultApi] = useState<{main: any, weather: any}>({main, weather})
+  const [lat, setLat] = useState(55.7505412);
+  
+  const [lon, setLon] = useState(37.6174782);
+  
+  const [titleCity, setTitleCity] = useState(localStorage.getItem('city') ? localStorage.getItem('city') : "Москва")
+  
+  const geocodingCity = (data:string) => {
+    setTitleCity(data);
+    localStorage.setItem("city", data);
+  }
+  useEffect(() => {
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${titleCity},643&limit=1&appid=7a7246067a4dacd8861ed493fa0284f1`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('response', data);
+          console.log("data", data[0]);
+          
+          setGeocoding(data);
+          setLat(data[0].lat);
+          setLon(data[0].lon);
+        })
+        .catch(err => {
+            console.log('Ошибка запроса');
+        })
+  }, [titleCity])
+  useEffect(() => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7a7246067a4dacd8861ed493fa0284f1&lang=ru&units=metric`)
+        .then((response) => response.json())
+        .then((data) => setResultApi(data))
+        .catch(err => {
+            console.log('Ошибка запроса');
+        });
+  }, [geocoding])
+  
+  
+  
   return (
     <div className='app'>
       <section className='wrapper'>
         <header className='header'>
-          <LocationSearch />
+          <LocationSearch newCity={titleCity} geocodingCity={geocodingCity}/>
         </header>
         <div className='wrap'>
           <aside className='aside'>
 
           </aside>
           <main className='weather'>
-            <WeatherToday temp={tempReadings} tempMax={tempMax} tempMin={tempMin} description={imgWeather[description]}/>
+            <WeatherToday 
+              temp={resultAPI.main.temp ? Math.round(resultAPI.main.temp) : 0} 
+              tempMax={Math.ceil(resultAPI.main.temp_max)} 
+              tempMin={Math.floor(resultAPI.main.temp_min)} 
+              description={imgWeather[resultAPI.weather[0].description]}/>
           </main>
         </div>
         
@@ -46,3 +95,4 @@ function App() {
 }
 
 export default App;
+

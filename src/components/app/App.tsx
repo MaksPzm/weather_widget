@@ -1,7 +1,8 @@
 import './index.scss';
 import LocationSearch from '../searchLocation/SearchlLocation';
-import WeatherToday from '../weatherToday/WeatherToday';
+import WeatherNow from '../weatherNow/WeatherNow';
 import { useState, useEffect } from 'react';
+import WeatherToday from '../weatherToDay/WeatherToday';
 
 
 let tempReadings: number | string = localStorage.getItem('temp') ? Number(localStorage.getItem('temp')) : "Данные не найдены";
@@ -14,8 +15,10 @@ const imgWeather: any = {
   "небольшой дождь": '../../../images/svg/weather/дождь.svg',
   "ясно": '../../../images/svg/weather/солнечно.svg',
   "небольшая облачность": '../../../images/svg/weather/небольшая облачность.svg',
-  "облачно с прояснениями": '../../../images/svg/weather/небольшая облачность.svg' 
+  "облачно с прояснениями": '../../../images/svg/weather/небольшая облачность.svg',
+  "дождь": '../../../images/svg/weather/дождь.svg' 
 };
+export {imgWeather};
 const main = {
   temp: tempReadings,
   temp_max: tempMax,
@@ -30,9 +33,9 @@ console.log('imgWeather: ', imgWeather[description]);
 function App() {
   const [geocoding, setGeocoding] = useState<any>({});
   const [resultAPI, setResultApi] = useState<{main: any, weather: any}>({main, weather})
-  const [lat, setLat] = useState(55.7505412);
+  const [lat, setLat] = useState<number>(55.7505412);
   
-  const [lon, setLon] = useState(37.6174782);
+  const [lon, setLon] = useState<number>(37.6174782);
   
   const [titleCity, setTitleCity] = useState(localStorage.getItem('city') ? localStorage.getItem('city') : "Москва")
   
@@ -58,7 +61,10 @@ function App() {
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7a7246067a4dacd8861ed493fa0284f1&lang=ru&units=metric`)
         .then((response) => response.json())
-        .then((data) => setResultApi(data))
+        .then((data) => {setResultApi(data)
+          console.log("resultAPI", data);
+          
+        })
         .catch(err => {
             console.log('Ошибка запроса');
         });
@@ -77,11 +83,14 @@ function App() {
 
           </aside>
           <main className='weather'>
-            <WeatherToday 
+            <WeatherNow 
               temp={resultAPI.main.temp ? Math.round(resultAPI.main.temp) : 0} 
               tempMax={Math.ceil(resultAPI.main.temp_max)} 
               tempMin={Math.floor(resultAPI.main.temp_min)} 
               description={imgWeather[resultAPI.weather[0].description]}/>
+              <WeatherToday 
+                lat={lat}
+                lon={lon}/>
           </main>
         </div>
         

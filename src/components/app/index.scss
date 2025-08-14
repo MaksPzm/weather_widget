@@ -47,7 +47,12 @@ html {
             }
             .weather {
                 display: flex;
+                flex-direction: column;
                 gap: 5rem;
+                .weather__section {
+                    display: flex;
+                    gap: 5rem;
+                }
             }
         }
     }

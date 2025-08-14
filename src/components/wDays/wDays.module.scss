@@ -1,0 +1,25 @@
+$background: rgba(15, 113, 165, 0.6);
+$radius: 4rem;
+.day {
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $background;
+    color: white;
+    border-radius: $radius;
+    .day__weather {
+        width: 30rem;
+        display: flex;
+        justify-content: space-between;
+        .day__weather_block {
+            width: 7rem;
+            font-size: 4.6rem;
+            display: flex;
+            .day__weather_block_deg {
+                font-size: 2.8rem;
+                margin-top: 0.4rem;
+            }
+        }
+    }
+}

@@ -3,8 +3,9 @@ import styles from "./searchLocation.module.scss"
 import search from "./images/svg/search.svg";
 import { ChangeEvent, useState } from "react";
 import Location from '../location/Location';
+import Geolocation from '../geolocation/Geolocation';
 
-let cityArr: string[] = [];
+ let cityArr: string[] = [];
 
 function LocationSearch(props: any): React.JSX.Element {
     const [inputValue, setInputValue] = useState<string>("");
@@ -25,7 +26,10 @@ function LocationSearch(props: any): React.JSX.Element {
             props.geocodingCity(inputValue);
        }
    }
-   
+   const geolocationCity = (data:string) => {
+    setCity(data);
+    props.geocodingCity(data);
+   }
     return (
         <>
             <div className={styles.blockSearch} onClick={clickBlockSearch}>
@@ -42,7 +46,8 @@ function LocationSearch(props: any): React.JSX.Element {
                         value={inputValue}
                 />
             </div>
-            <Location state={city} saveCity={cityArr}/>
+            <Location state={city} saveCity={cityArr} geolocationCity={geolocationCity}/>
+            <Geolocation geolocationCity={geolocationCity}/>
         </>    
     )
 }

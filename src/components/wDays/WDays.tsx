@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import styles from "./wDays.module.scss"
 
 
@@ -17,7 +16,6 @@ export default function WDays(props:any): React.JSX.Element {
                    {props.temp_max}
                     <div className={styles.day__weather_block_deg}>°C</div>  
                 </div>
-                
             </div>
         </div>    
     );

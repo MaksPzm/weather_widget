@@ -12,7 +12,7 @@ html {
 
 .app {
     font-size: variables.$fontSize;
-    width: 144rem;
+    width: 120rem;
     height: 94.5rem;
     display: flex;
     justify-content: center;
@@ -22,16 +22,16 @@ html {
     background-image: url(../../../public/images/png/background/clear.png);
     background-size: cover;
     .wrapper {
-        width: 135rem;
-        height: 76.5rem;
+        width: 105rem;
+        height: 78rem;
         border-radius: variables.$radius;
         backdrop-filter: blur(5px); // размытие зднего фона
         // filter: blur(5px); // размытие рамки
         .header {
             height: 4rem;
-            margin-top: -4.5rem;
-            margin-left: 30rem;
+            margin: -4.5rem auto 0;
             display: flex;
+            justify-content: center;
             gap: 5rem;
         }
         .wrap {
@@ -48,6 +48,7 @@ html {
             .weather {
                 display: flex;
                 flex-direction: column;
+                margin: 0 auto;
                 gap: 5rem;
                 .weather__section {
                     display: flex;

@@ -3,14 +3,8 @@ import { useState, useEffect } from "react";
 import styles from "./weatherFiveDays.module.scss";
 import WDays from "../wDays/WDays";
 
-const daily = {
-  0: {main: 0}
-};
-const weather = [{
-  description: ""
-}]
-
 export default function WeatherFiveDays(props:any): React.JSX.Element {
+    const daily = {0: {main: 0}};
     const date =new Date;
     const [data, setData] = useState<{daily:any}>({daily});
     const [boolean, setBoolean] = useState(false);
@@ -25,8 +19,6 @@ export default function WeatherFiveDays(props:any): React.JSX.Element {
                 console.log("Ошибка запроса");
             })
     }, [props])
-    
-        
     return (
         <div className={styles.section}>
             <WDays

@@ -12,7 +12,7 @@ export default function ButtonShowWeathet(props:any): React.JSX.Element {
         props.buttonPress(boolean);
         e.target.innerText === text ? e.target.innerText = newText : e.target.innerText = text;
     }
-return (
-    <button className={styles.btn} onClick={showWeather}>{text}</button>
-)
+    return (
+        <button className={styles.btn} onClick={showWeather}>{text}</button>
+    )
 }

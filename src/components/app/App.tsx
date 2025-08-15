@@ -22,17 +22,9 @@ const imgWeather: any = {
   "дождь": '../../../images/svg/weather/дождь.svg' 
 };
 
-
-const main = {
-  temp: tempReadings,
-  temp_max: tempMax,
-  temp_min: tempMin
-};
-const weather = [{
-  description: description
-}]
-
 function App() {
+  const main = {temp: tempReadings, temp_max: tempMax, temp_min: tempMin};
+  const weather = [{description: description}];
   const [geocoding, setGeocoding] = useState<any>({});
   const [resultAPI, setResultApi] = useState<{main: any, weather: any}>({main, weather})
   const [lat, setLat] = useState<number>(55.7505412);
@@ -43,7 +35,6 @@ function App() {
     localStorage.setItem("city", data);
   }
   const [boolean, setBoolean] = useState<boolean>(false);
-  
   const buttonPress = (res:boolean) => {
     setBoolean(res)
   }
@@ -68,9 +59,6 @@ function App() {
             console.log('Ошибка запроса');
         });
   }, [geocoding])
-  
-  
-  
   return (
     <div className='app'>
       <section className='wrapper'>
@@ -78,9 +66,6 @@ function App() {
           <LocationSearch newCity={titleCity} geocodingCity={geocodingCity}/>
         </header>
         <div className='wrap'>
-          <aside className='aside'>
-
-          </aside>
           <main className='weather'>
             <ButtonShowWeathet buttonPress={buttonPress}/>
             <section className='weather__section'>  
@@ -101,11 +86,6 @@ function App() {
             </section>      
           </main>
         </div>
-        
-        <footer className='footer'>
-
-        </footer>
-
       </section>
     </div>
   );

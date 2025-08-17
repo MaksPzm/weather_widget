@@ -33,22 +33,22 @@ export default function WeatherFiveDays(props: ComponentProps): React.JSX.Elemen
                 day={boolean == false ? 0 : date.toLocaleDateString()}/>
             <WDays
                 temp_min={boolean == false ? 0 : Math.round(data.daily.data[1].all_day.temperature)}
-                temp_max={boolean == false ? 0 : Math.round(data.daily.data[0].all_day.temperature_max)}
+                temp_max={boolean == false ? 0 : Math.round(data.daily.data[1].all_day.temperature_max)}
                 weather={boolean == false ? 0 : data.daily.data[1].all_day.icon}
                 day={boolean == false ? 0 : new Date(date.setDate(date.getDate() + 1)).toLocaleDateString()}/>
             <WDays
                 temp_min={boolean == false ? 0 : Math.round(data.daily.data[2].all_day.temperature)}
-                temp_max={boolean == false ? 0 : Math.round(data.daily.data[0].all_day.temperature_max)}
+                temp_max={boolean == false ? 0 : Math.round(data.daily.data[2].all_day.temperature_max)}
                 weather={boolean == false ? 0 : data.daily.data[2].all_day.icon}
                 day={boolean == false ? 0 : new Date(date.setDate(date.getDate() + 1)).toLocaleDateString()}/>
             <WDays
                 temp_min={boolean == false ? 0 : Math.round(data.daily.data[3].all_day.temperature)}
-                temp_max={boolean == false ? 0 : Math.round(data.daily.data[0].all_day.temperature_max)}
+                temp_max={boolean == false ? 0 : Math.round(data.daily.data[3].all_day.temperature_max)}
                 weather={boolean == false ? 0 : data.daily.data[3].all_day.icon}
                 day={boolean == false ? 0 : new Date(date.setDate(date.getDate() + 1)).toLocaleDateString()}/>
             <WDays
                 temp_min={boolean == false ? 0 : Math.round(data.daily.data[4].all_day.temperature)}
-                temp_max={boolean == false ? 0 : Math.round(data.daily.data[0].all_day.temperature_max)}
+                temp_max={boolean == false ? 0 : Math.round(data.daily.data[4].all_day.temperature_max)}
                 weather={boolean == false ? 0 : data.daily.data[4].all_day.icon}
                 day={boolean == false ? 0 : new Date(date.setDate(date.getDate() + 1)).toLocaleDateString()}/>
         </div>    

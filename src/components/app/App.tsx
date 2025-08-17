@@ -1,7 +1,7 @@
 import './index.scss';
-import LocationSearch from '../searchLocation/SearchlLocation';
+import LocationSearch from '../searchLocation/LocationSearch';
 import WeatherNow from '../weatherNow/WeatherNow';
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import WeatherToday from '../weatherToDay/WeatherToday';
 import ButtonShowWeathet from '../buttonShowWeather/ButtonShowWeather';
 import WeatherFiveDays from '../weatherFiveDays/WeatherFiveDays';

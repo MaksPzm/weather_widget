@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./searchLocation.module.scss"
+import styles from "./locationSearch.module.scss"
 import search from "./images/svg/search.svg";
 import { ChangeEvent, useState } from "react";
 import Location from '../location/Location';

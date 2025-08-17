@@ -7,26 +7,35 @@ import ButtonShowWeathet from '../buttonShowWeather/ButtonShowWeather';
 import WeatherFiveDays from '../weatherFiveDays/WeatherFiveDays';
 
 
-let tempReadings: number | string = localStorage.getItem('temp') ? Number(localStorage.getItem('temp')) : "Данные не найдены";
-let tempMax: number | string = localStorage.getItem('tempMax') ? Number(localStorage.getItem('tempMax')) : "Данные не найдены";
-let tempMin: number | string = localStorage.getItem('tempMin') ? Number(localStorage.getItem('tempMin')) : "Данные не найдены";
-let description: string = localStorage.getItem('description') ? String(localStorage.getItem('description')) : "";
-
-const imgWeather: any = {
-  "переменная облачность": '../../../images/svg/weather/облачно.svg',
-  "пасмурно": '../../../images/svg/weather/пасмурно.svg',
-  "небольшой дождь": '../../../images/svg/weather/дождь.svg',
-  "ясно": '../../../images/svg/weather/солнечно.svg',
-  "небольшая облачность": '../../../images/svg/weather/небольшая облачность.svg',
-  "облачно с прояснениями": '../../../images/svg/weather/небольшая облачность.svg',
-  "дождь": '../../../images/svg/weather/дождь.svg' 
-};
-
+// type imgWeat = [{
+//   "переменная облачность":string,
+//   "пасмурно":string,
+//   "небольшой дождь":string,
+//   "ясно":string,
+//   "небольшая облачность":string,
+//   "облачно с прояснениями":string,
+//   "дождь":string 
+// }];
 function App() {
+  const imgWeather: any = {
+    "переменная облачность": '../../../images/svg/weather/облачно.svg',
+    "пасмурно": '../../../images/svg/weather/пасмурно.svg',
+    "небольшой дождь": '../../../images/svg/weather/дождь.svg',
+    "ясно": '../../../images/svg/weather/солнечно.svg',
+    "небольшая облачность": '../../../images/svg/weather/небольшая облачность.svg',
+    "облачно с прояснениями": '../../../images/svg/weather/небольшая облачность.svg',
+    "дождь": '../../../images/svg/weather/дождь.svg' 
+  };
+  let tempReadings: string | null = localStorage.getItem('temp') ? localStorage.getItem('temp') : "Данные не найдены";
+  let tempMax: string | null = localStorage.getItem('tempMax') ? (localStorage.getItem('tempMax')) : "Данные не найдены";
+  let tempMin: string | null = localStorage.getItem('tempMin') ? (localStorage.getItem('tempMin')) : "Данные не найдены";
+  let description: string = localStorage.getItem('description') ? String(localStorage.getItem('description')) : "";
   const main = {temp: tempReadings, temp_max: tempMax, temp_min: tempMin};
   const weather = [{description: description}];
   const [geocoding, setGeocoding] = useState<any>({});
-  const [resultAPI, setResultApi] = useState<{main: any, weather: any}>({main, weather})
+  const [resultAPI, setResultApi] = useState<{
+    main:{ temp: string | null; temp_max: string | null; temp_min: string | null; }, 
+    weather: any}>({main, weather});
   const [lat, setLat] = useState<number>(55.7505412);
   const [lon, setLon] = useState<number>(37.6174782);
   const [titleCity, setTitleCity] = useState(localStorage.getItem('city') ? localStorage.getItem('city') : "Москва")
@@ -70,10 +79,11 @@ function App() {
             <ButtonShowWeathet buttonPress={buttonPress}/>
             <section className='weather__section'>  
               <WeatherNow 
-                temp={resultAPI.main.temp ? Math.round(resultAPI.main.temp) : 0} 
-                tempMax={Math.ceil(resultAPI.main.temp_max)} 
-                tempMin={Math.floor(resultAPI.main.temp_min)} 
-                description={imgWeather[resultAPI.weather[0].description]}/>
+                temp={resultAPI.main.temp ? Math.round(Number(resultAPI.main.temp)) : 0} 
+                tempMax={Math.ceil(Number(resultAPI.main.temp_max))} 
+                tempMin={Math.floor(Number(resultAPI.main.temp_min))} 
+                description={imgWeather[resultAPI.weather[0].description]}
+                />
                 {boolean === false ? 
                   <WeatherToday 
                     lat={lat}

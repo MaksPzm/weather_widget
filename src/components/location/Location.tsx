@@ -3,7 +3,13 @@ import styles from "./location.module.scss"
 import location from "./images/svg/location.svg"
 import { useState, useEffect } from "react"
 
-function Location(props: any): React.JSX.Element {
+interface ComponentProps {
+    state: string | null,
+    saveCity: string[],
+    geolocationCity: Function,
+    
+}
+function Location(props: ComponentProps): React.JSX.Element {
     const [isActive, setActive] = useState<boolean>(false);
     const showSaveCity = (e:any) => {
         setActive(current => !current);

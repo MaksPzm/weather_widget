@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "./geolocation.module.scss";
 import { useState, useEffect } from "react";
-import { click } from "@testing-library/user-event/dist/click";
-export default function Geolocation(props:any): React.JSX.Element {
+
+interface ComponentProps {
+    geolocationCity: Function
+}
+export default function Geolocation(props: ComponentProps): React.JSX.Element {
     const [lat, setLat] = useState<number>(55.7505412);
     const [lon, setLon] = useState<number>(37.6174782);
     const [resultApi, setResultApi] = useState<any>("");

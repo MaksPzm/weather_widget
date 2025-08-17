@@ -2,7 +2,12 @@ import React from "react";
 import styles from "./WeatherToday.module.scss"
 import { useState, useEffect } from "react";
 
-function WeatherToday(props:any): React.JSX.Element {
+interface ComponentProps {
+    lat: number,
+    lon: number
+}
+
+function WeatherToday(props: ComponentProps): React.JSX.Element {
     const daily = {0: {main: 0}};
     const date =new Date;
     const [data, setData] = useState<{daily:any}>({daily});

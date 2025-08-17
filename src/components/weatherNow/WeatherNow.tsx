@@ -2,7 +2,14 @@ import React from "react";
 import { Children, ReactElement } from "react";
 import styles from "./weatherNow.module.scss";
 
-function WeatherToday(props: any): React.JSX.Element {
+interface ComponentProps {
+    temp: number,
+    tempMax: number,
+    tempMin: number,
+    description: string
+}
+
+function WeatherNow(props: ComponentProps): React.JSX.Element {
     const date = new Date;
     return (
             <div className={styles.weather__weatherToday}>
@@ -36,4 +43,4 @@ function WeatherToday(props: any): React.JSX.Element {
     )
 }
 
-export default WeatherToday;
+export default WeatherNow;

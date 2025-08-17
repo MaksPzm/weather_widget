@@ -3,7 +3,12 @@ import { useState, useEffect } from "react";
 import styles from "./weatherFiveDays.module.scss";
 import WDays from "../wDays/WDays";
 
-export default function WeatherFiveDays(props:any): React.JSX.Element {
+interface ComponentProps {
+    lat: number,
+    lon: number
+}
+
+export default function WeatherFiveDays(props: ComponentProps): React.JSX.Element {
     const daily = {0: {main: 0}};
     const date =new Date;
     const [data, setData] = useState<{daily:any}>({daily});

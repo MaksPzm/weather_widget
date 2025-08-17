@@ -2,8 +2,11 @@ import React from "react";
 import styles from "./buttonShowWeather.module.scss";
 import { useState } from "react";
 
+interface ComponentProps {
+    buttonPress: Function
+}
 
-export default function ButtonShowWeathet(props:any): React.JSX.Element {
+export default function ButtonShowWeathet(props: ComponentProps): React.JSX.Element {
     const text = "Показать погоду на 5 дней";
     const newText = "Показать погоду только на сегодня";
     const [boolean, setBoolean] = useState<boolean>(true);

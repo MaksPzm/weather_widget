@@ -5,9 +5,13 @@ import { ChangeEvent, useState } from "react";
 import Location from '../location/Location';
 import Geolocation from '../geolocation/Geolocation';
 
- let cityArr: string[] = [];
+ interface ComponentProps {
+    newCity: string | null,
+    geocodingCity: Function 
+ }
 
-function LocationSearch(props: any): React.JSX.Element {
+function LocationSearch(props: ComponentProps): React.JSX.Element {
+    const [cityArr, setCityArr] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
     const [city, setCity] = useState<string | null>(props.newCity);
 
@@ -21,7 +25,7 @@ function LocationSearch(props: any): React.JSX.Element {
        const { key } = event;
        if (key === 'Enter') {
             setCity(inputValue);
-            cityArr.push(inputValue);
+            setCityArr([...cityArr, inputValue]);
             setInputValue('');
             props.geocodingCity(inputValue);
        }
@@ -39,11 +43,11 @@ function LocationSearch(props: any): React.JSX.Element {
                     alt="search"
                 />
                 <input className={styles.blockSearch__search}
-                        placeholder="Введите нужный город"
-                        type="text"
-                        onChange={handleChang}
-                        onKeyDown={handlerKeyPress}
-                        value={inputValue}
+                    placeholder="Введите нужный город"
+                    type="text"
+                    onChange={handleChang}
+                    onKeyDown={handlerKeyPress}
+                    value={inputValue}
                 />
             </div>
             <Location state={city} saveCity={cityArr} geolocationCity={geolocationCity}/>
@@ -54,11 +58,11 @@ function LocationSearch(props: any): React.JSX.Element {
 
 export default LocationSearch;
 
-function clickBlockSearch(event: any) {
+function clickBlockSearch(event: React.MouseEvent<HTMLDivElement>) {
     event.stopPropagation();
     event.preventDefault();
-    const { target } = event;
-    const input = target.querySelector('input');
+    const target = event.target as HTMLDivElement;
+    const input: HTMLInputElement | null = target.querySelector("input");
     if (input !== null) {
         input.focus()
     } else {
